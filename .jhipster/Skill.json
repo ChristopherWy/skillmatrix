@@ -1,0 +1,31 @@
+{
+  "name": "Skill",
+  "fields": [
+    {
+      "fieldName": "skill",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "mitarbeiterskills",
+      "otherEntityRelationshipName": "skill",
+      "relationshipName": "mitarbeiterskills"
+    }
+  ],
+  "changelogDate": "20200721204036",
+  "entityTableName": "skill",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
