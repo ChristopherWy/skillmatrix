@@ -21,22 +21,7 @@
       "fieldType": "Boolean"
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "arbeitszeiten",
-      "otherEntityRelationshipName": "mitarbeiter",
-      "relationshipName": "email",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "mitarbeiterskills",
-      "otherEntityRelationshipName": "email",
-      "relationshipName": "mitarbeiterskills"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20200721203936",
   "entityTableName": "mitarbeiter",
   "dto": "no",

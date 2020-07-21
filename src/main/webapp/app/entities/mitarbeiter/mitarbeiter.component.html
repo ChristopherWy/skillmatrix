@@ -27,7 +27,6 @@
                     <th scope="col"  jhiSortBy="vorname"><span>Vorname</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nachname"><span>Nachname</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="intern"><span>Intern</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email.id"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -38,11 +37,6 @@
                     <td>{{ mitarbeiter.vorname }}</td>
                     <td>{{ mitarbeiter.nachname }}</td>
                     <td>{{ mitarbeiter.intern }}</td>
-                    <td>
-                        <div *ngIf="mitarbeiter.email">
-                            <a [routerLink]="['/arbeitszeiten', mitarbeiter.email?.id, 'view']" >{{ mitarbeiter.email?.id }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

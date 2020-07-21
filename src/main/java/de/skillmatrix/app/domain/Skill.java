@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Skill.
@@ -28,10 +26,6 @@ public class Skill implements Serializable {
     @NotNull
     @Column(name = "skill", nullable = false)
     private String skill;
-
-    @OneToMany(mappedBy = "skill")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Mitarbeiterskills> mitarbeiterskills = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -53,31 +47,6 @@ public class Skill implements Serializable {
 
     public void setSkill(String skill) {
         this.skill = skill;
-    }
-
-    public Set<Mitarbeiterskills> getMitarbeiterskills() {
-        return mitarbeiterskills;
-    }
-
-    public Skill mitarbeiterskills(Set<Mitarbeiterskills> mitarbeiterskills) {
-        this.mitarbeiterskills = mitarbeiterskills;
-        return this;
-    }
-
-    public Skill addMitarbeiterskills(Mitarbeiterskills mitarbeiterskills) {
-        this.mitarbeiterskills.add(mitarbeiterskills);
-        mitarbeiterskills.setSkill(this);
-        return this;
-    }
-
-    public Skill removeMitarbeiterskills(Mitarbeiterskills mitarbeiterskills) {
-        this.mitarbeiterskills.remove(mitarbeiterskills);
-        mitarbeiterskills.setSkill(null);
-        return this;
-    }
-
-    public void setMitarbeiterskills(Set<Mitarbeiterskills> mitarbeiterskills) {
-        this.mitarbeiterskills = mitarbeiterskills;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

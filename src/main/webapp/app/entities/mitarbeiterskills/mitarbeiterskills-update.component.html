@@ -50,38 +50,6 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_email">Email</label>
-                    <select class="form-control" id="field_email" name="email" formControlName="email">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="mitarbeiterOption.id === editForm.get('email')!.value?.id ? editForm.get('email')!.value : mitarbeiterOption" *ngFor="let mitarbeiterOption of mitarbeiters; trackBy: trackById">{{ mitarbeiterOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_skill">Skill</label>
-                    <select class="form-control" id="field_skill" name="skill" formControlName="skill">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="skillOption.id === editForm.get('skill')!.value?.id ? editForm.get('skill')!.value : skillOption" *ngFor="let skillOption of skills; trackBy: trackById">{{ skillOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_email">Email</label>
-                    <select class="form-control" id="field_email" name="email" formControlName="email">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="mitarbeiterOption.id === editForm.get('email')!.value?.id ? editForm.get('email')!.value : mitarbeiterOption" *ngFor="let mitarbeiterOption of mitarbeiters; trackBy: trackById">{{ mitarbeiterOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_skill">Skill</label>
-                    <select class="form-control" id="field_skill" name="skill" formControlName="skill">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="skillOption.id === editForm.get('skill')!.value?.id ? editForm.get('skill')!.value : skillOption" *ngFor="let skillOption of skills; trackBy: trackById">{{ skillOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

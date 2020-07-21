@@ -26,10 +26,6 @@
                     <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="skill"><span>Skill</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="level"><span>Level</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email.id"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="skill.id"><span>Skill</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email.id"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="skill.id"><span>Skill</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -39,26 +35,6 @@
                     <td>{{ mitarbeiterskills.email }}</td>
                     <td>{{ mitarbeiterskills.skill }}</td>
                     <td>{{ mitarbeiterskills.level }}</td>
-                    <td>
-                        <div *ngIf="mitarbeiterskills.email">
-                            <a [routerLink]="['/mitarbeiter', mitarbeiterskills.email?.id, 'view']" >{{ mitarbeiterskills.email?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="mitarbeiterskills.skill">
-                            <a [routerLink]="['/skill', mitarbeiterskills.skill?.id, 'view']" >{{ mitarbeiterskills.skill?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="mitarbeiterskills.email">
-                            <a [routerLink]="['/mitarbeiter', mitarbeiterskills.email?.id, 'view']" >{{ mitarbeiterskills.email?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="mitarbeiterskills.skill">
-                            <a [routerLink]="['/skill', mitarbeiterskills.skill?.id, 'view']" >{{ mitarbeiterskills.skill?.id }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
