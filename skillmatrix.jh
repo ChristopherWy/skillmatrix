@@ -20,6 +20,10 @@ entity Arbeitszeiten {
     wochenstunden Integer required
 }
 
+relationship ManyToOne {
+	Skill{mitarbeiter} to Mitarbeiter
+}
+
 paginate Mitarbeiter, Skill, Mitarbeiterskills, Arbeitszeiten with pagination
 
 service all with serviceImpl except Mitarbeiter, Skill, Mitarbeiterskills, Arbeitszeiten
