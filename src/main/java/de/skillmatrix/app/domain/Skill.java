@@ -1,6 +1,5 @@
 package de.skillmatrix.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,10 +27,6 @@ public class Skill implements Serializable {
     @Column(name = "skill", nullable = false)
     private String skill;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "skills", allowSetters = true)
-    private Mitarbeiter mitarbeiter;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -52,19 +47,6 @@ public class Skill implements Serializable {
 
     public void setSkill(String skill) {
         this.skill = skill;
-    }
-
-    public Mitarbeiter getMitarbeiter() {
-        return mitarbeiter;
-    }
-
-    public Skill mitarbeiter(Mitarbeiter mitarbeiter) {
-        this.mitarbeiter = mitarbeiter;
-        return this;
-    }
-
-    public void setMitarbeiter(Mitarbeiter mitarbeiter) {
-        this.mitarbeiter = mitarbeiter;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

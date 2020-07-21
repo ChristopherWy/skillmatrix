@@ -24,7 +24,6 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="skill"><span>Skill</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="mitarbeiter.id"><span>Mitarbeiter</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -32,11 +31,6 @@
                 <tr *ngFor="let skill of skills ;trackBy: trackId">
                     <td><a [routerLink]="['/skill', skill.id, 'view']">{{ skill.id }}</a></td>
                     <td>{{ skill.skill }}</td>
-                    <td>
-                        <div *ngIf="skill.mitarbeiter">
-                            <a [routerLink]="['/mitarbeiter', skill.mitarbeiter?.id, 'view']" >{{ skill.mitarbeiter?.id }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

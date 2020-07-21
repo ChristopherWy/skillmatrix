@@ -29,9 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class ArbeitszeitenResourceIT {
 
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_WOCHENSTUNDEN = 1;
     private static final Integer UPDATED_WOCHENSTUNDEN = 2;
 
@@ -54,7 +51,6 @@ public class ArbeitszeitenResourceIT {
      */
     public static Arbeitszeiten createEntity(EntityManager em) {
         Arbeitszeiten arbeitszeiten = new Arbeitszeiten()
-            .email(DEFAULT_EMAIL)
             .wochenstunden(DEFAULT_WOCHENSTUNDEN);
         return arbeitszeiten;
     }
@@ -66,7 +62,6 @@ public class ArbeitszeitenResourceIT {
      */
     public static Arbeitszeiten createUpdatedEntity(EntityManager em) {
         Arbeitszeiten arbeitszeiten = new Arbeitszeiten()
-            .email(UPDATED_EMAIL)
             .wochenstunden(UPDATED_WOCHENSTUNDEN);
         return arbeitszeiten;
     }
@@ -90,7 +85,6 @@ public class ArbeitszeitenResourceIT {
         List<Arbeitszeiten> arbeitszeitenList = arbeitszeitenRepository.findAll();
         assertThat(arbeitszeitenList).hasSize(databaseSizeBeforeCreate + 1);
         Arbeitszeiten testArbeitszeiten = arbeitszeitenList.get(arbeitszeitenList.size() - 1);
-        assertThat(testArbeitszeiten.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testArbeitszeiten.getWochenstunden()).isEqualTo(DEFAULT_WOCHENSTUNDEN);
     }
 
@@ -113,25 +107,6 @@ public class ArbeitszeitenResourceIT {
         assertThat(arbeitszeitenList).hasSize(databaseSizeBeforeCreate);
     }
 
-
-    @Test
-    @Transactional
-    public void checkEmailIsRequired() throws Exception {
-        int databaseSizeBeforeTest = arbeitszeitenRepository.findAll().size();
-        // set the field null
-        arbeitszeiten.setEmail(null);
-
-        // Create the Arbeitszeiten, which fails.
-
-
-        restArbeitszeitenMockMvc.perform(post("/api/arbeitszeitens")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(arbeitszeiten)))
-            .andExpect(status().isBadRequest());
-
-        List<Arbeitszeiten> arbeitszeitenList = arbeitszeitenRepository.findAll();
-        assertThat(arbeitszeitenList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -163,7 +138,6 @@ public class ArbeitszeitenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(arbeitszeiten.getId().intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].wochenstunden").value(hasItem(DEFAULT_WOCHENSTUNDEN)));
     }
     
@@ -178,7 +152,6 @@ public class ArbeitszeitenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(arbeitszeiten.getId().intValue()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.wochenstunden").value(DEFAULT_WOCHENSTUNDEN));
     }
     @Test
@@ -202,7 +175,6 @@ public class ArbeitszeitenResourceIT {
         // Disconnect from session so that the updates on updatedArbeitszeiten are not directly saved in db
         em.detach(updatedArbeitszeiten);
         updatedArbeitszeiten
-            .email(UPDATED_EMAIL)
             .wochenstunden(UPDATED_WOCHENSTUNDEN);
 
         restArbeitszeitenMockMvc.perform(put("/api/arbeitszeitens")
@@ -214,7 +186,6 @@ public class ArbeitszeitenResourceIT {
         List<Arbeitszeiten> arbeitszeitenList = arbeitszeitenRepository.findAll();
         assertThat(arbeitszeitenList).hasSize(databaseSizeBeforeUpdate);
         Arbeitszeiten testArbeitszeiten = arbeitszeitenList.get(arbeitszeitenList.size() - 1);
-        assertThat(testArbeitszeiten.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testArbeitszeiten.getWochenstunden()).isEqualTo(UPDATED_WOCHENSTUNDEN);
     }
 

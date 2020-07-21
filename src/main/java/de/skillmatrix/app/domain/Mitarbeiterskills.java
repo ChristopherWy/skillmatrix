@@ -1,5 +1,6 @@
 package de.skillmatrix.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -24,16 +25,16 @@ public class Mitarbeiterskills implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @NotNull
-    @Column(name = "skill", nullable = false)
-    private String skill;
-
-    @NotNull
     @Column(name = "level", nullable = false)
     private Integer level;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "mitarbeiterskills", allowSetters = true)
+    private Skill skill;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "mitarbeiterskills", allowSetters = true)
+    private Mitarbeiter email;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -42,32 +43,6 @@ public class Mitarbeiterskills implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Mitarbeiterskills email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSkill() {
-        return skill;
-    }
-
-    public Mitarbeiterskills skill(String skill) {
-        this.skill = skill;
-        return this;
-    }
-
-    public void setSkill(String skill) {
-        this.skill = skill;
     }
 
     public Integer getLevel() {
@@ -81,6 +56,32 @@ public class Mitarbeiterskills implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public Mitarbeiterskills skill(Skill skill) {
+        this.skill = skill;
+        return this;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    public Mitarbeiter getEmail() {
+        return email;
+    }
+
+    public Mitarbeiterskills email(Mitarbeiter mitarbeiter) {
+        this.email = mitarbeiter;
+        return this;
+    }
+
+    public void setEmail(Mitarbeiter mitarbeiter) {
+        this.email = mitarbeiter;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -105,8 +106,6 @@ public class Mitarbeiterskills implements Serializable {
     public String toString() {
         return "Mitarbeiterskills{" +
             "id=" + getId() +
-            ", email='" + getEmail() + "'" +
-            ", skill='" + getSkill() + "'" +
             ", level=" + getLevel() +
             "}";
     }

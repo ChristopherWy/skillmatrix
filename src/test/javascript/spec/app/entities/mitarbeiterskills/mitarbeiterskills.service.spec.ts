@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(MitarbeiterskillsService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Mitarbeiterskills(0, 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Mitarbeiterskills(0, 0);
     });
 
     describe('Service methods', () => {
@@ -54,8 +54,6 @@ describe('Service Tests', () => {
       it('should update a Mitarbeiterskills', () => {
         const returnedFromService = Object.assign(
           {
-            email: 'BBBBBB',
-            skill: 'BBBBBB',
             level: 1,
           },
           elemDefault
@@ -73,8 +71,6 @@ describe('Service Tests', () => {
       it('should return a list of Mitarbeiterskills', () => {
         const returnedFromService = Object.assign(
           {
-            email: 'BBBBBB',
-            skill: 'BBBBBB',
             level: 1,
           },
           elemDefault

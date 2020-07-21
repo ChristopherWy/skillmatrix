@@ -2,13 +2,6 @@
   "name": "Arbeitszeiten",
   "fields": [
     {
-      "fieldName": "email",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
       "fieldName": "wochenstunden",
       "fieldType": "Integer",
       "fieldValidateRules": [
@@ -16,7 +9,16 @@
       ]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "mitarbeiter",
+      "otherEntityRelationshipName": "arbeitszeiten",
+      "relationshipName": "mitarbeiter",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
   "changelogDate": "20200721204236",
   "entityTableName": "arbeitszeiten",
   "dto": "no",
