@@ -23,16 +23,20 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="wochenstunden"><span>Wochenstunden</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mitarbeiter.id"><span>Mitarbeiter</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let arbeitszeiten of arbeitszeitens ;trackBy: trackId">
                     <td><a [routerLink]="['/arbeitszeiten', arbeitszeiten.id, 'view']">{{ arbeitszeiten.id }}</a></td>
-                    <td>{{ arbeitszeiten.email }}</td>
                     <td>{{ arbeitszeiten.wochenstunden }}</td>
+                    <td>
+                        <div *ngIf="arbeitszeiten.mitarbeiter">
+                            <a [routerLink]="['/mitarbeiter', arbeitszeiten.mitarbeiter?.id, 'view']" >{{ arbeitszeiten.mitarbeiter?.id }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

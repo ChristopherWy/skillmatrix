@@ -29,12 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class MitarbeiterskillsResourceIT {
 
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_SKILL = "AAAAAAAAAA";
-    private static final String UPDATED_SKILL = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_LEVEL = 1;
     private static final Integer UPDATED_LEVEL = 2;
 
@@ -57,8 +51,6 @@ public class MitarbeiterskillsResourceIT {
      */
     public static Mitarbeiterskills createEntity(EntityManager em) {
         Mitarbeiterskills mitarbeiterskills = new Mitarbeiterskills()
-            .email(DEFAULT_EMAIL)
-            .skill(DEFAULT_SKILL)
             .level(DEFAULT_LEVEL);
         return mitarbeiterskills;
     }
@@ -70,8 +62,6 @@ public class MitarbeiterskillsResourceIT {
      */
     public static Mitarbeiterskills createUpdatedEntity(EntityManager em) {
         Mitarbeiterskills mitarbeiterskills = new Mitarbeiterskills()
-            .email(UPDATED_EMAIL)
-            .skill(UPDATED_SKILL)
             .level(UPDATED_LEVEL);
         return mitarbeiterskills;
     }
@@ -95,8 +85,6 @@ public class MitarbeiterskillsResourceIT {
         List<Mitarbeiterskills> mitarbeiterskillsList = mitarbeiterskillsRepository.findAll();
         assertThat(mitarbeiterskillsList).hasSize(databaseSizeBeforeCreate + 1);
         Mitarbeiterskills testMitarbeiterskills = mitarbeiterskillsList.get(mitarbeiterskillsList.size() - 1);
-        assertThat(testMitarbeiterskills.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testMitarbeiterskills.getSkill()).isEqualTo(DEFAULT_SKILL);
         assertThat(testMitarbeiterskills.getLevel()).isEqualTo(DEFAULT_LEVEL);
     }
 
@@ -119,44 +107,6 @@ public class MitarbeiterskillsResourceIT {
         assertThat(mitarbeiterskillsList).hasSize(databaseSizeBeforeCreate);
     }
 
-
-    @Test
-    @Transactional
-    public void checkEmailIsRequired() throws Exception {
-        int databaseSizeBeforeTest = mitarbeiterskillsRepository.findAll().size();
-        // set the field null
-        mitarbeiterskills.setEmail(null);
-
-        // Create the Mitarbeiterskills, which fails.
-
-
-        restMitarbeiterskillsMockMvc.perform(post("/api/mitarbeiterskills")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(mitarbeiterskills)))
-            .andExpect(status().isBadRequest());
-
-        List<Mitarbeiterskills> mitarbeiterskillsList = mitarbeiterskillsRepository.findAll();
-        assertThat(mitarbeiterskillsList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkSkillIsRequired() throws Exception {
-        int databaseSizeBeforeTest = mitarbeiterskillsRepository.findAll().size();
-        // set the field null
-        mitarbeiterskills.setSkill(null);
-
-        // Create the Mitarbeiterskills, which fails.
-
-
-        restMitarbeiterskillsMockMvc.perform(post("/api/mitarbeiterskills")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(mitarbeiterskills)))
-            .andExpect(status().isBadRequest());
-
-        List<Mitarbeiterskills> mitarbeiterskillsList = mitarbeiterskillsRepository.findAll();
-        assertThat(mitarbeiterskillsList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -188,8 +138,6 @@ public class MitarbeiterskillsResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(mitarbeiterskills.getId().intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].skill").value(hasItem(DEFAULT_SKILL)))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
     }
     
@@ -204,8 +152,6 @@ public class MitarbeiterskillsResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(mitarbeiterskills.getId().intValue()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.skill").value(DEFAULT_SKILL))
             .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
     }
     @Test
@@ -229,8 +175,6 @@ public class MitarbeiterskillsResourceIT {
         // Disconnect from session so that the updates on updatedMitarbeiterskills are not directly saved in db
         em.detach(updatedMitarbeiterskills);
         updatedMitarbeiterskills
-            .email(UPDATED_EMAIL)
-            .skill(UPDATED_SKILL)
             .level(UPDATED_LEVEL);
 
         restMitarbeiterskillsMockMvc.perform(put("/api/mitarbeiterskills")
@@ -242,8 +186,6 @@ public class MitarbeiterskillsResourceIT {
         List<Mitarbeiterskills> mitarbeiterskillsList = mitarbeiterskillsRepository.findAll();
         assertThat(mitarbeiterskillsList).hasSize(databaseSizeBeforeUpdate);
         Mitarbeiterskills testMitarbeiterskills = mitarbeiterskillsList.get(mitarbeiterskillsList.size() - 1);
-        assertThat(testMitarbeiterskills.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testMitarbeiterskills.getSkill()).isEqualTo(UPDATED_SKILL);
         assertThat(testMitarbeiterskills.getLevel()).isEqualTo(UPDATED_LEVEL);
     }
 

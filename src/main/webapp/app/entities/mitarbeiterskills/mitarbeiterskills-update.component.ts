@@ -7,6 +7,12 @@ import { Observable } from 'rxjs';
 
 import { IMitarbeiterskills, Mitarbeiterskills } from 'app/shared/model/mitarbeiterskills.model';
 import { MitarbeiterskillsService } from './mitarbeiterskills.service';
+import { ISkill } from 'app/shared/model/skill.model';
+import { SkillService } from 'app/entities/skill/skill.service';
+import { IMitarbeiter } from 'app/shared/model/mitarbeiter.model';
+import { MitarbeiterService } from 'app/entities/mitarbeiter/mitarbeiter.service';
+
+type SelectableEntity = ISkill | IMitarbeiter;
 
 @Component({
   selector: 'jhi-mitarbeiterskills-update',
@@ -14,16 +20,20 @@ import { MitarbeiterskillsService } from './mitarbeiterskills.service';
 })
 export class MitarbeiterskillsUpdateComponent implements OnInit {
   isSaving = false;
+  skills: ISkill[] = [];
+  mitarbeiters: IMitarbeiter[] = [];
 
   editForm = this.fb.group({
     id: [],
-    email: [null, [Validators.required]],
-    skill: [null, [Validators.required]],
     level: [null, [Validators.required]],
+    skill: [],
+    email: [],
   });
 
   constructor(
     protected mitarbeiterskillsService: MitarbeiterskillsService,
+    protected skillService: SkillService,
+    protected mitarbeiterService: MitarbeiterService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -31,15 +41,19 @@ export class MitarbeiterskillsUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ mitarbeiterskills }) => {
       this.updateForm(mitarbeiterskills);
+
+      this.skillService.query().subscribe((res: HttpResponse<ISkill[]>) => (this.skills = res.body || []));
+
+      this.mitarbeiterService.query().subscribe((res: HttpResponse<IMitarbeiter[]>) => (this.mitarbeiters = res.body || []));
     });
   }
 
   updateForm(mitarbeiterskills: IMitarbeiterskills): void {
     this.editForm.patchValue({
       id: mitarbeiterskills.id,
-      email: mitarbeiterskills.email,
-      skill: mitarbeiterskills.skill,
       level: mitarbeiterskills.level,
+      skill: mitarbeiterskills.skill,
+      email: mitarbeiterskills.email,
     });
   }
 
@@ -61,9 +75,9 @@ export class MitarbeiterskillsUpdateComponent implements OnInit {
     return {
       ...new Mitarbeiterskills(),
       id: this.editForm.get(['id'])!.value,
-      email: this.editForm.get(['email'])!.value,
-      skill: this.editForm.get(['skill'])!.value,
       level: this.editForm.get(['level'])!.value,
+      skill: this.editForm.get(['skill'])!.value,
+      email: this.editForm.get(['email'])!.value,
     };
   }
 
@@ -81,5 +95,9 @@ export class MitarbeiterskillsUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: SelectableEntity): any {
+    return item.id;
   }
 }

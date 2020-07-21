@@ -22,14 +22,6 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_mitarbeiter">Mitarbeiter</label>
-                    <select class="form-control" id="field_mitarbeiter" name="mitarbeiter" formControlName="mitarbeiter">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="mitarbeiterOption.id === editForm.get('mitarbeiter')!.value?.id ? editForm.get('mitarbeiter')!.value : mitarbeiterOption" *ngFor="let mitarbeiterOption of mitarbeiters; trackBy: trackById">{{ mitarbeiterOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

@@ -8,13 +8,15 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span>Email</span></dt>
-                <dd>
-                    <span>{{ arbeitszeiten.email }}</span>
-                </dd>
                 <dt><span>Wochenstunden</span></dt>
                 <dd>
                     <span>{{ arbeitszeiten.wochenstunden }}</span>
+                </dd>
+                <dt><span>Mitarbeiter</span></dt>
+                <dd>
+                    <div *ngIf="arbeitszeiten.mitarbeiter">
+                        <a [routerLink]="['/mitarbeiter', arbeitszeiten.mitarbeiter?.id, 'view']">{{ arbeitszeiten.mitarbeiter?.id }}</a>
+                    </div>
                 </dd>
             </dl>
 

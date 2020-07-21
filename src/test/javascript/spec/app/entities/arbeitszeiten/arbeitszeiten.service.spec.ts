@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ArbeitszeitenService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Arbeitszeiten(0, 'AAAAAAA', 0);
+      elemDefault = new Arbeitszeiten(0, 0);
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,6 @@ describe('Service Tests', () => {
       it('should update a Arbeitszeiten', () => {
         const returnedFromService = Object.assign(
           {
-            email: 'BBBBBB',
             wochenstunden: 1,
           },
           elemDefault
@@ -72,7 +71,6 @@ describe('Service Tests', () => {
       it('should return a list of Arbeitszeiten', () => {
         const returnedFromService = Object.assign(
           {
-            email: 'BBBBBB',
             wochenstunden: 1,
           },
           elemDefault

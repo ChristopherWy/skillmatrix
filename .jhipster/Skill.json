@@ -9,15 +9,7 @@
       ]
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "mitarbeiter",
-      "otherEntityRelationshipName": "skill",
-      "relationshipName": "mitarbeiter",
-      "otherEntityField": "id"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20200721204036",
   "entityTableName": "skill",
   "dto": "no",

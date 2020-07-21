@@ -12,12 +12,6 @@
                 <dd>
                     <span>{{ skill.skill }}</span>
                 </dd>
-                <dt><span>Mitarbeiter</span></dt>
-                <dd>
-                    <div *ngIf="skill.mitarbeiter">
-                        <a [routerLink]="['/mitarbeiter', skill.mitarbeiter?.id, 'view']">{{ skill.mitarbeiter?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

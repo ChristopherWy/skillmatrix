@@ -12,18 +12,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_email">Email</label>
-                    <input type="text" class="form-control" name="email" id="field_email"
-                           formControlName="email"/>
-                    <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" for="field_wochenstunden">Wochenstunden</label>
                     <input type="number" class="form-control" name="wochenstunden" id="field_wochenstunden"
                            formControlName="wochenstunden"/>
@@ -37,6 +25,14 @@
                             This field should be a number.
                         </small>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mitarbeiter">Mitarbeiter</label>
+                    <select class="form-control" id="field_mitarbeiter" name="mitarbeiter" formControlName="mitarbeiter">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mitarbeiterOption.id === editForm.get('mitarbeiter')!.value?.id ? editForm.get('mitarbeiter')!.value : mitarbeiterOption" *ngFor="let mitarbeiterOption of mitarbeiters; trackBy: trackById">{{ mitarbeiterOption.id }}</option>
+                    </select>
                 </div>
             </div>
 
