@@ -1,0 +1,40 @@
+entity Mitarbeiter {
+	email String required,
+	vorname String,
+	nachname String,
+	intern Boolean
+}
+
+entity Skill {
+	skill String required
+}
+
+entity Mitarbeiterskills {
+	email String required,
+    skill String required,
+    level Integer required	
+}
+
+entity Arbeitszeiten {
+	email String required,
+    wochenstunden Integer required
+}
+
+relationship OneToMany {
+	Mitarbeiter to Mitarbeiterskills{email},
+    Skill to Mitarbeiterskills{skill}
+}
+
+relationship ManyToOne {
+	Mitarbeiterskills{email} to Mitarbeiter,
+    Mitarbeiterskills{skill} to Skill
+}
+
+relationship OneToOne {
+	Mitarbeiter{email} to Arbeitszeiten
+}
+
+paginate Mitarbeiter, Skill, Mitarbeiterskills, Arbeitszeiten with pagination
+
+service all with serviceImpl except Mitarbeiter, Skill, Mitarbeiterskills, Arbeitszeiten
+
