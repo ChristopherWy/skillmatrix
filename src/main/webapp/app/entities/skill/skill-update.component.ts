@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { ISkill, Skill } from 'app/shared/model/skill.model';
 import { SkillService } from './skill.service';
+import { IMitarbeiter } from 'app/shared/model/mitarbeiter.model';
+import { MitarbeiterService } from 'app/entities/mitarbeiter/mitarbeiter.service';
 
 @Component({
   selector: 'jhi-skill-update',
@@ -14,17 +16,26 @@ import { SkillService } from './skill.service';
 })
 export class SkillUpdateComponent implements OnInit {
   isSaving = false;
+  mitarbeiters: IMitarbeiter[] = [];
 
   editForm = this.fb.group({
     id: [],
     skill: [null, [Validators.required]],
+    mitarbeiter: [],
   });
 
-  constructor(protected skillService: SkillService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected skillService: SkillService,
+    protected mitarbeiterService: MitarbeiterService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ skill }) => {
       this.updateForm(skill);
+
+      this.mitarbeiterService.query().subscribe((res: HttpResponse<IMitarbeiter[]>) => (this.mitarbeiters = res.body || []));
     });
   }
 
@@ -32,6 +43,7 @@ export class SkillUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: skill.id,
       skill: skill.skill,
+      mitarbeiter: skill.mitarbeiter,
     });
   }
 
@@ -54,6 +66,7 @@ export class SkillUpdateComponent implements OnInit {
       ...new Skill(),
       id: this.editForm.get(['id'])!.value,
       skill: this.editForm.get(['skill'])!.value,
+      mitarbeiter: this.editForm.get(['mitarbeiter'])!.value,
     };
   }
 
@@ -71,5 +84,9 @@ export class SkillUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IMitarbeiter): any {
+    return item.id;
   }
 }
