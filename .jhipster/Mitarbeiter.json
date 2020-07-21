@@ -1,0 +1,51 @@
+{
+  "name": "Mitarbeiter",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "vorname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nachname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "intern",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "arbeitszeiten",
+      "otherEntityRelationshipName": "mitarbeiter",
+      "relationshipName": "email",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "mitarbeiterskills",
+      "otherEntityRelationshipName": "email",
+      "relationshipName": "mitarbeiterskills"
+    }
+  ],
+  "changelogDate": "20200721203936",
+  "entityTableName": "mitarbeiter",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

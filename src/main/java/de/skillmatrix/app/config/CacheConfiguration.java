@@ -47,6 +47,12 @@ public class CacheConfiguration {
             createCache(cm, de.skillmatrix.app.domain.User.class.getName());
             createCache(cm, de.skillmatrix.app.domain.Authority.class.getName());
             createCache(cm, de.skillmatrix.app.domain.User.class.getName() + ".authorities");
+            createCache(cm, de.skillmatrix.app.domain.Mitarbeiter.class.getName());
+            createCache(cm, de.skillmatrix.app.domain.Mitarbeiter.class.getName() + ".mitarbeiterskills");
+            createCache(cm, de.skillmatrix.app.domain.Skill.class.getName());
+            createCache(cm, de.skillmatrix.app.domain.Skill.class.getName() + ".mitarbeiterskills");
+            createCache(cm, de.skillmatrix.app.domain.Mitarbeiterskills.class.getName());
+            createCache(cm, de.skillmatrix.app.domain.Arbeitszeiten.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
