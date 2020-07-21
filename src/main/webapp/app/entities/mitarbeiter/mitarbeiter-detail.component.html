@@ -24,12 +24,6 @@
                 <dd>
                     <span>{{ mitarbeiter.intern }}</span>
                 </dd>
-                <dt><span>Email</span></dt>
-                <dd>
-                    <div *ngIf="mitarbeiter.email">
-                        <a [routerLink]="['/arbeitszeiten', mitarbeiter.email?.id, 'view']">{{ mitarbeiter.email?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

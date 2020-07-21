@@ -20,30 +20,6 @@
                 <dd>
                     <span>{{ mitarbeiterskills.level }}</span>
                 </dd>
-                <dt><span>Email</span></dt>
-                <dd>
-                    <div *ngIf="mitarbeiterskills.email">
-                        <a [routerLink]="['/mitarbeiter', mitarbeiterskills.email?.id, 'view']">{{ mitarbeiterskills.email?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span>Skill</span></dt>
-                <dd>
-                    <div *ngIf="mitarbeiterskills.skill">
-                        <a [routerLink]="['/skill', mitarbeiterskills.skill?.id, 'view']">{{ mitarbeiterskills.skill?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span>Email</span></dt>
-                <dd>
-                    <div *ngIf="mitarbeiterskills.email">
-                        <a [routerLink]="['/mitarbeiter', mitarbeiterskills.email?.id, 'view']">{{ mitarbeiterskills.email?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span>Skill</span></dt>
-                <dd>
-                    <div *ngIf="mitarbeiterskills.skill">
-                        <a [routerLink]="['/skill', mitarbeiterskills.skill?.id, 'view']">{{ mitarbeiterskills.skill?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

@@ -23,36 +23,7 @@
       ]
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "mitarbeiter",
-      "otherEntityRelationshipName": "mitarbeiterskills",
-      "relationshipName": "email",
-      "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "skill",
-      "otherEntityRelationshipName": "mitarbeiterskills",
-      "relationshipName": "skill",
-      "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "mitarbeiter",
-      "otherEntityRelationshipName": "mitarbeiterskills",
-      "relationshipName": "email",
-      "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "skill",
-      "otherEntityRelationshipName": "mitarbeiterskills",
-      "relationshipName": "skill",
-      "otherEntityField": "id"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20200721204136",
   "entityTableName": "mitarbeiterskills",
   "dto": "no",
