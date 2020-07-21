@@ -10,18 +10,20 @@ entity Skill {
 }
 
 entity Mitarbeiterskills {
-	email String required,
-    skill String required,
     level Integer required	
 }
 
 entity Arbeitszeiten {
-	email String required,
     wochenstunden Integer required
 }
 
 relationship ManyToOne {
-	Skill{mitarbeiter} to Mitarbeiter
+	Mitarbeiterskills{skill} to Skill,
+    Mitarbeiterskills{email} to Mitarbeiter
+}
+
+relationship OneToOne {
+	Arbeitszeiten{mitarbeiter} to Mitarbeiter
 }
 
 paginate Mitarbeiter, Skill, Mitarbeiterskills, Arbeitszeiten with pagination
